@@ -48,37 +48,8 @@ df_selected.rename(columns=column_mapping, inplace=True)
 columns_to_drop = ['ca', 'slope','thal']
 df_selected = df_selected.drop(columns_to_drop, axis=1)
 
-meanTBPS = df_selected['trestbps'].dropna()
-meanChol = df_selected['chol'].dropna()
-meanfbs = df_selected['fbs'].dropna()
-meanRestCG = df_selected['restecg'].dropna()
-meanthalach = df_selected['thalach'].dropna()
-meanexang = df_selected['exang'].dropna()
+df_clean = df_selected.fillna(df_selected.mean().round(1))
 
-meanTBPS = meanTBPS.astype(float)
-meanChol = meanChol.astype(float)
-meanfbs = meanfbs.astype(float)
-meanthalach = meanthalach.astype(float)
-meanexang = meanexang.astype(float)
-meanRestCG = meanRestCG.astype(float)
-
-meanTBPS = round(meanTBPS.mean())
-meanChol = round(meanChol.mean())
-meanfbs = round(meanfbs.mean())
-meanthalach = round(meanthalach.mean())
-meanexang = round(meanexang.mean())
-meanRestCG = round(meanRestCG.mean())
-
-fill_values = {
-  'trestbps': meanTBPS,
-  'chol': meanChol,
-  'fbs': meanfbs,
-  'thalach':meanthalach,
-  'exang':meanexang,
-  'restecg':meanRestCG
-}
-
-df_clean = df_selected.fillna(value=fill_values)
 df_clean.drop_duplicates(inplace=True)
 
 X = df_clean.drop("target", axis=1)
