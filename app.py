@@ -22,7 +22,7 @@ df = df.iloc[:, :-1]
 df = df.drop(df.columns[0], axis=1)
 df = df.astype(float)
 
-df.replace(-9.0, np.NaN, inplace=True)
+df.replace(-9.0, np.nan, inplace=True)
 
 df_selected = df.iloc[:, [1, 2, 7, 8, 10, 14, 17, 30, 36, 38, 39, 42, 49, 56]]
 
@@ -52,13 +52,13 @@ df_clean = df_selected.fillna(df_selected.mean().round(1))
 
 df_clean.drop_duplicates(inplace=True)
 
-X = df_clean.drop("target", axis=1)
-y = df_clean['target']
+X = df_clean.drop("target", axis=1).values
+y = df_clean.iloc[:,-1]
 
 smote = SMOTE(random_state=42)
 X, y = smote.fit_resample(X, y)
 
-model = pickle.load(open("xgb_model.pkl", 'rb'))
+model = pickle.load(open("knn_model.pkl", 'rb'))
 
 y_pred = model.predict(X)
 accuracy = accuracy_score(y, y_pred)
