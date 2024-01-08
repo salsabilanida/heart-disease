@@ -1,5 +1,5 @@
-Link Public:
+Link Cloud Streamlit:
 https://datascience-heartdisease-prediction.streamlit.app/
 
 Link Video Youtube:
-https://youtu.be/ygcbLMiP9AU?si=_iLiLAt2-s25m2JL 
+https://youtu.be/qR6uFhrTy7Y?si=1ZLbu5XNB3hpvBwu
